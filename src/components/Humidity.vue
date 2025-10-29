@@ -1,13 +1,18 @@
 <script setup>
 import { useHumidity } from '../composables/humidity';
 
-const { humidity } = useHumidity();
+const props = defineProps({
+  humidity: {
+    type: String,
+    required: true
+  }
+})
 </script>
 
 <template>
     <div class="humidity-card">
-        <div class="humidity-label">Humidité</div>
-        <div class="humidity-value">30%</div>
+      <div class="humidity-label">Humidité</div>
+      <div class="humidity-value">{{humidity}}</div>
     </div>
 </template>
 
@@ -30,6 +35,7 @@ const { humidity } = useHumidity();
   font-weight: 500;
 }
 .humidity-value {
+  color: #555;
   font-size: 48px;
   font-weight: bold;
 }

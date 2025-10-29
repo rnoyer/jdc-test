@@ -5,6 +5,5 @@ export function useHumidity() {
 
     // La logique pour convertir l'humidité en pourcentage
 
-
     return { humidity };
 }

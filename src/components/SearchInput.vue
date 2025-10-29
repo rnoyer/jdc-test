@@ -1,12 +1,22 @@
 <script setup>
+import { ref } from 'vue'
+
+const emit = defineEmits(['search'])
+const locationInput = ref('')
+
+function handleSubmit() {
+  emit('search', locationInput.value)
+  locationInput.value = ''
+}
+
 </script>
 
 
 <template>
-    <div class="search-input-container">
-        <input type="text" placeholder="Ville..." class="search-input" />
-        <button>Rechercher</button>
-    </div>
+    <form class="search-input-container" @submit.prevent="handleSubmit">
+        <input v-model="locationInput" type="text" placeholder="Ville..." class="search-input" />
+        <input type=submit value='Rechercher' />
+    </form>
 </template>
 
 <style scoped>
