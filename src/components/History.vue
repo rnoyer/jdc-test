@@ -18,13 +18,13 @@ const props = defineProps({
 
 const history = ref([])
 
-watch(() => props.temperature, () => {
-  if(props.location === history.value[0]?.location) return
+watch(() => (props.location), () => {
   history.value.unshift({
     location : props.location,
     temperature: props.temperature,
     humidity : props.humidity
   })
+  console.log(history)
 })
 
 

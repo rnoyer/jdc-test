@@ -1,6 +1,5 @@
 <script setup>
 import { ref, computed } from 'vue';
-import { useTemperature } from '../composables/temperature';
 
 const props = defineProps({
   fahrenheit: {

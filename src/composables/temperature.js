@@ -1,11 +1,10 @@
-import { ref } from 'vue';
+import { computed } from 'vue';
 
-export function useTemperature() {
-    const temperature = ref(0);
+export function useTemperature(rawCelsius) {
+    const celsius = computed(() => rawCelsius.value == null ? '' : `${rawCelsius.value}°C`)
 
     // La logique pour convertir la température en degrés Fahrenheit
-    temperature.value = Math.floor(temperature.value * (9 / 5) + 32)
+    const fahrenheit = computed(() => rawCelsius.value == null ? '' : `${Math.floor(rawCelsius.value * (9 / 5) + 32)}°F`)
 
-
-    return { temperature };
+    return { celsius, fahrenheit };
 }

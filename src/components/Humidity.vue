@@ -1,5 +1,4 @@
 <script setup>
-import { useHumidity } from '../composables/humidity';
 
 const props = defineProps({
   humidity: {
@@ -7,6 +6,7 @@ const props = defineProps({
     required: true
   }
 })
+
 </script>
 
 <template>

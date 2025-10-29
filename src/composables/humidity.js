@@ -1,9 +1,9 @@
-import { ref } from 'vue';
+import { computed } from 'vue';
 
-export function useHumidity() {
-    const humidity = ref(0);
+export function useHumidity(rawHumidity) {
 
     // La logique pour convertir l'humidité en pourcentage
+    const humidity = computed(() => rawHumidity.value == null ? '' : `${rawHumidity.value}%`)
 
     return { humidity };
 }

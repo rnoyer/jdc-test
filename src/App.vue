@@ -8,26 +8,26 @@ import { useFetchWeather } from './composables/useWeather'
 import { useHumidity } from './composables/humidity'
 import { useTemperature } from './composables/temperature'
 
-// const {temperature} = useTemperature()
-// const {humidity} = useHumidity()
-const {fetchWeather, degreeCelsius, degreeFar, humidity} = useFetchWeather()
+const { rawCelsius, rawHumidity, fetchWeather } = useFetchWeather()
+const { celsius, fahrenheit } = useTemperature(rawCelsius)
+const { humidity } = useHumidity(rawHumidity)
 const locationInput = ref('')
 
-function onSearch(location) {
+async function onSearch(location) {
   if (!location) return
+  await fetchWeather(location)
   locationInput.value = location
-  fetchWeather(location)
 }
 
 </script>
 
 <template>
       <div class="weather-info">
-          <Temperature :fahrenheit="degreeFar" :celsius="degreeCelsius"/>
+          <Temperature :fahrenheit="fahrenheit" :celsius="celsius"/>
           <Humidity :humidity="humidity"/>
       </div>
       <SearchInput @search="onSearch" />
-      <History :location="locationInput" :temperature="degreeCelsius" :humidity="humidity" />
+      <History :location="locationInput" :temperature="celsius" :humidity="humidity" />
 </template>
 
 <style scoped>
